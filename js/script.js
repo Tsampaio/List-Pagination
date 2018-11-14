@@ -41,7 +41,45 @@ showPage(students, 1);
    functionality to the pagination buttons.
 ***/
 
+const appendPageLinks = (list) => {
+   /*
+   1. Determine how many pages are needed for the list by dividing the
+   total number of list items by the max number of items per page
+   2. Create a div, give it the “pagination” class, and append it to the .page div
+   3. Add a ul to the “pagination” div for every page
+   4. Add li and a tags with the page number text
+   5. Add an event listener to each a tag. When they are clicked
+   call the showPage function to display the appropriate page
+   6. Loop over pagination links to remove active class from all links
+   7. Add the active class to the link that was just clicked. You can identify that
+   clicked link using event.target
+   */
+   const numberPages = Math.ceil(students.length / maxStudents);
+   console.log(numberPages);
 
+   let div = document.createElement("div");
+   div.className = "pagination";
+   document.querySelector(".page").appendChild(div);
+
+   let ul = document.createElement("ul");
+   div.appendChild(ul);
+   
+  
+   for (let i = 0; i < numberPages; i++) {
+      
+      let li = document.createElement("li");
+      let a = document.createElement("a");
+      a.href = "#";
+      a.textContent = i;
+     
+      li.appendChild(a);
+      ul.appendChild(li);
+      
+   }
+   
+}
+
+appendPageLinks(1)
 
 
 
