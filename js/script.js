@@ -41,7 +41,7 @@ showPage(students, 1);
    functionality to the pagination buttons.
 ***/
 
-const appendPageLinks = (list) => {
+const appendPageLinks = () => {
    /*
    1. Determine how many pages are needed for the list by dividing the
    total number of list items by the max number of items per page
@@ -69,17 +69,28 @@ const appendPageLinks = (list) => {
       
       let li = document.createElement("li");
       let a = document.createElement("a");
+      a.addEventListener("click",(e)=> {
+         const getAllanchor = e.target.parentNode.parentNode.querySelectorAll("a");
+         for (let j=0; j < getAllanchor.length; j++) {
+            getAllanchor[j].classList.remove("active");
+         }
+         e.target.classList.add("active");
+         showPage(students, i+1);
+      });
       a.href = "#";
       a.textContent = i;
      
       li.appendChild(a);
       ul.appendChild(li);
       
+      if(i == 0) {
+         a.classList.add("active");
+      }
    }
    
 }
 
-appendPageLinks(1)
+appendPageLinks();
 
 
 
