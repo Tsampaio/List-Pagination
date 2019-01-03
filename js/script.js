@@ -64,7 +64,6 @@ const appendPageLinks = () => {
    let ul = document.createElement("ul");
    div.appendChild(ul);
    
-  
    for (let i = 0; i < numberPages; i++) {
       
       let li = document.createElement("li");
@@ -78,7 +77,7 @@ const appendPageLinks = () => {
          showPage(students, i+1);
       });
       a.href = "#";
-      a.textContent = i;
+      a.textContent = i+1;
      
       li.appendChild(a);
       ul.appendChild(li);
@@ -91,6 +90,22 @@ const appendPageLinks = () => {
 }
 
 appendPageLinks();
+
+const searchBar = () => {
+   let searchContainer = document.createElement("div");
+   let searchInput = document.createElement("input");
+   let searchButton = document.createElement("button");
+   searchContainer.className = "student-search";
+   searchContainer.appendChild(searchInput);
+   searchInput.placeholder = "Search for students...";
+   searchButton.textContent = "Search";
+   searchContainer.appendChild(searchButton);
+
+
+   document.querySelector(".page-header").appendChild(searchContainer);
+}
+
+searchBar();
 
 
 
