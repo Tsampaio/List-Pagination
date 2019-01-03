@@ -21,6 +21,10 @@ const students = document.querySelectorAll(".student-item");
 const maxStudents = 10;
 let pageNumber = 1;
 
+let searchContainer = document.createElement("div");
+let searchInput = document.createElement("input");
+let searchButton = document.createElement("button");
+
 const showPage = (list, page) => {
   
    for (let i = 0; i < students.length; i++ ) {
@@ -33,7 +37,6 @@ const showPage = (list, page) => {
 
 }
 showPage(students, 1);
-
 
 
 /*** 
@@ -91,22 +94,38 @@ const appendPageLinks = () => {
 
 appendPageLinks();
 
-const searchBar = () => {
-   let searchContainer = document.createElement("div");
-   let searchInput = document.createElement("input");
-   let searchButton = document.createElement("button");
+const addSearchBar = () => {
+   
    searchContainer.className = "student-search";
    searchContainer.appendChild(searchInput);
    searchInput.placeholder = "Search for students...";
    searchButton.textContent = "Search";
    searchContainer.appendChild(searchButton);
 
-
    document.querySelector(".page-header").appendChild(searchContainer);
+
 }
 
-searchBar();
+addSearchBar();
 
+const runSearch = () => {
 
+   let studentName = "";
+   let searchText = searchInput.value.toLowerCase();
+
+   // Loop through all list items, and hide those who don't match the search query
+   for (i = 0; i < students.length; i++) {
+      studentName = students[i].querySelector("h3").textContent.toLowerCase();
+      
+      if (studentName.indexOf(searchText) > -1) {
+         students[i].style.display = "";
+      } else {
+         students[i].style.display = "none";
+      }
+   }
+}
+
+searchInput.addEventListener("keyup", runSearch );
+searchButton.addEventListener("click", runSearch );
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
